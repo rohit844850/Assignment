@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assert/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <title>Document</title>
+    <style>
+        
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+            /* Added padding for better spacing */
+        }
+        
+        .box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .box1 {
+            width: 70%;
+            background-color: lightblue;
+           
+        }
+        
+        .box2 {
+           
+            background-color: rgb(26, 160, 197);
+            
+        }
+        
+        @media (max-width: 768px) {
+            .box1, .box2 {
+                width: 100%;
+            }
+        }
+
+        .box2 input[type="text"], 
+        .box2 input[type="email"],
+        .box2 input[type="tel"]{
+            width: 100% !important;
+        }
+        #submit{
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .btn a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-secondary">
+        <div class="container-fluid ">
+          <a class="navbar-brand" href="#">Clients Panel</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">client</a>
+              </li>
+                           
+            </ul>
+          </div>
+        </div>
+      </nav>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            
+                <% if (data.length>0) { %>
+                 <table class="table table-bordered">
+                     <tr class="text-center border border-danger">
+                   <th>Name </th>
+                   <th>Last Name</th>
+                   <th>Email</th>
+                   <th>Phone </th>
+                   <th>Project </th>
+                   <th colspan="2">Action </th>
+                  
+                     </tr>
+                     <% for(var i=0;i<data.length;i++){ %>
+                      <tr class="border border-danger">
+                         
+                         <td><%= data[i].name %></td>
+                         <td><%= data[i].lastname %></td>
+                         <td><%= data[i].email %></td>
+                         <td><%= data[i].phone %></td>
+                         <td><%= data[i].project %></td>
+      
+                        <td ><button type="button" class="btn btn-danger"><a href='/delete/<%= data[i]._id %>'>Delete</a></button></td>
+                        <td ><button type="button" class="btn btn-success"><a href='/edit/<%= data[i]._id %>'>edit</a></button></td>
+                           
+                        
+                       
+                      </tr>
+                      <% } %>
+         
+                 </table>
+         
+                 <% } else { %>
+                     nodata
+                  <% } %>
+                
+        </div>
+        <div class="col-md-4">
+            <div class="box2">
+                <form action="/" method="post">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Enter your name">
+                    </div>
+                    <div>
+                        <label for="lastname">Last Name</label>
+                        <input type="text" name="lastname" id="lastname" placeholder="Enter your last name">
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <div>
+                        <label for="phone">Phone</label>
+                        <input type="tel" name="phone" id="phone" placeholder="Enter your phone">
+                    </div>
+                    <div>
+                        <label for="project">Project</label>
+                        <input type="text" name="project" id="project" placeholder="Enter your project">
+                    </div>
+                    <button type="submit" id="submit">Submit</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box1">
+             
+    
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
